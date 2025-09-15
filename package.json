@@ -1,0 +1,22 @@
+{
+  "name": "chart-generator",
+  "version": "1.0.0",
+  "description": "Library for generating charts from data.",
+  "type": "module",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aangelinux/1DV610-L2.git"
+  },
+  "author": "Angelina Larsson",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^6.3.6"
+  }
+}
