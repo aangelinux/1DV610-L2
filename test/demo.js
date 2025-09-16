@@ -1,7 +1,9 @@
 /**
  * @module Defines a demo application to test the Chart Generator library.
- * @file tests/demo.js
+ * @file test/demo.js
  */
+
+import { Chart } from '../lib/chart.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
@@ -62,7 +64,7 @@ template.innerHTML = `
         background-color: #7d3e4aff;
     }
 
-    #chart {
+    #chartCanvas {
         margin-top: 20px;
         width: 550px;
         height: 300px;
@@ -94,7 +96,7 @@ template.innerHTML = `
         <button id="lineButton">GENERATE LINE GRAPH</button>
         <button id="pieButton">GENERATE PIE CHART</button>
     </div>
-    <div id="chart"></div>
+    <div id="chartCanvas"></div>
 </div>
 `
 
@@ -103,6 +105,13 @@ customElements.define('demo-app',
      * Encapsulates logic for the demo-app component.
      */
     class extends HTMLElement {
+        #barButton
+        #lineButton
+        #pieButton
+        #textInputs
+        #numberInputs
+        #chartCanvas
+
         /**
          * Creates an instance of the current type.
          */
@@ -111,6 +120,91 @@ customElements.define('demo-app',
 
             this.attachShadow({ mode: 'open' })
                 .appendChild(template.content.cloneNode(true))
+
+            this.#barButton = this.shadowRoot.querySelector('#barButton')
+            this.#lineButton = this.shadowRoot.querySelector('#lineButton')
+            this.#pieButton = this.shadowRoot.querySelector('#pieButton')
+            this.#textInputs = this.shadowRoot.querySelectorAll('input[type="text"]')
+            this.#numberInputs = this.shadowRoot.querySelectorAll('input[type="number"]')
+            this.#chartCanvas = this.shadowRoot.querySelector('#chartCanvas')
+
+            this.chart = new Chart()
+            this.abortController = new AbortController()
+        }
+
+        /**
+         * Called when the element is appended to the DOM.
+         */
+        connectedCallback() {
+            this.#barButton.addEventListener('click', () => {
+                const dataArrays = this.#gatherDataFromInputs()
+                const objectData = this.#saveDataInObject(dataArrays)
+                this.#addBarChart(objectData)
+            }, { signal: this.abortController.signal })
+
+            this.#lineButton.addEventListener('click', () => {
+                const dataArrays = this.#gatherDataFromInputs()
+                const objectData = this.#saveDataInObject(dataArrays)
+                this.#addLineGraph(objectData)
+            }, { signal: this.abortController.signal })
+
+            this.#pieButton.addEventListener('click', () => {
+                const dataArrays = this.#gatherDataFromInputs()
+                const objectData = this.#saveDataInObject(dataArrays)
+                this.#addPieChart(objectData)
+            }, { signal: this.abortController.signal })
+        }
+
+        /**
+         * Called when the element is removed from the DOM.
+         */
+        disconnectedCallback() {
+            this.abortController.abort()
+        }
+
+        #gatherDataFromInputs() {
+            let textDataArray = []
+            let numberDataArray = []
+            let dataArraysObject
+
+            this.#textInputs.forEach((textInput) => {
+                textDataArray.push(textInput.value)
+            })
+            this.#numberInputs.forEach((numberInput) => {
+                numberDataArray.push(numberInput.value)
+            })
+
+            return dataArraysObject = { textDataArray, numberDataArray }
+        }
+
+        #saveDataInObject(dataArrays) {
+            const { textDataArray, numberDataArray } = dataArrays
+            let objectData = []
+
+            for (let i = 0; i <= textDataArray.length - 1; i++) {
+                objectData.push({
+                    text: textDataArray[i],
+                    number: numberDataArray[i]
+                })
+            }
+
+            return objectData
+        }
+
+        #addBarChart(data) {
+            const barChart = this.chart.createBarChart(data)
+            this.#chartCanvas = barChart
+        }
+
+        #addLineGraph(data) {
+            const lineGraph = this.chart.createLineGraph(data)
+            this.#chartCanvas = lineGraph
+
+        }
+
+        #addPieChart(data) {
+            const pieChart = this.chart.createPieChart(data)
+            this.#chartCanvas = pieChart
         }
     }
 )
