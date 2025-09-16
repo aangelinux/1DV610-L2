@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Library for generating charts from data.",
   "type": "module",
+  "browser": "test/demo.js",
   "directories": {
     "lib": "lib"
   },

@@ -9,4 +9,7 @@ export default defineConfig({
       fileName: (format) => `chart.${format}.js`,
     },
   },
+  server: {
+    open: '/test/demo.html'
+  }
 });
