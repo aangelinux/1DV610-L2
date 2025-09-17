@@ -6,6 +6,9 @@
 
 
 ## Code examples
+<!-- Data object example -->
+<!-- Options object example -->
+<!-- Table of valid options values -->
 
 
 ## Assignment files
