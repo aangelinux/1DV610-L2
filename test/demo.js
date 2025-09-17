@@ -3,7 +3,7 @@
  * @file test/demo.js
  */
 
-import { Chart } from '../lib/chart.js'
+import { Chart } from '../lib/public/chart.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
@@ -68,8 +68,6 @@ template.innerHTML = `
         margin-top: 20px;
         width: 550px;
         height: 300px;
-        border: 2px solid black;
-        border-radius: 3px;
     }
 </style>
 
@@ -193,6 +191,7 @@ customElements.define('demo-app',
 
         #addBarChart(data) {
             const barChart = this.chart.createBarChart(data)
+            this.#chart.appendChild(barChart)
         }
 
         #addLineGraph(data) {
