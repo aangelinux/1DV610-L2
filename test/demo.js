@@ -64,7 +64,7 @@ template.innerHTML = `
         background-color: #7d3e4aff;
     }
 
-    #chartCanvas {
+    #chart {
         margin-top: 20px;
         width: 550px;
         height: 300px;
@@ -96,7 +96,7 @@ template.innerHTML = `
         <button id="lineButton">GENERATE LINE GRAPH</button>
         <button id="pieButton">GENERATE PIE CHART</button>
     </div>
-    <div id="chartCanvas"></div>
+    <div id="chart"></div>
 </div>
 `
 
@@ -110,7 +110,7 @@ customElements.define('demo-app',
         #pieButton
         #textInputs
         #numberInputs
-        #chartCanvas
+        #chart
 
         /**
          * Creates an instance of the current type.
@@ -126,7 +126,7 @@ customElements.define('demo-app',
             this.#pieButton = this.shadowRoot.querySelector('#pieButton')
             this.#textInputs = this.shadowRoot.querySelectorAll('input[type="text"]')
             this.#numberInputs = this.shadowRoot.querySelectorAll('input[type="number"]')
-            this.#chartCanvas = this.shadowRoot.querySelector('#chartCanvas')
+            this.#chart = this.shadowRoot.querySelector('#chart')
 
             this.chart = new Chart()
             this.abortController = new AbortController()
@@ -193,18 +193,15 @@ customElements.define('demo-app',
 
         #addBarChart(data) {
             const barChart = this.chart.createBarChart(data)
-            this.#chartCanvas = barChart
         }
 
         #addLineGraph(data) {
             const lineGraph = this.chart.createLineGraph(data)
-            this.#chartCanvas = lineGraph
 
         }
 
         #addPieChart(data) {
             const pieChart = this.chart.createPieChart(data)
-            this.#chartCanvas = pieChart
         }
     }
 )
