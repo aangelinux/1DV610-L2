@@ -26,11 +26,35 @@ template.innerHTML = `
         margin: 15px 0 5px 0;
     }
 
+    #inputs {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+    }
+
     #dataInputs {
         display: flex;
         flex-direction: row;
         gap: 15px;
         margin-bottom: 15px;
+    }
+
+    #dataInputs input[type=number] {
+        width: 75px;
+    }
+
+    #optionsInputs div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        gap: 5px;
+        width: 230px;
+        align-items: center;
+    }
+
+    #optionsInputs input {
+        width: 140px;
     }
 
     input {
@@ -73,20 +97,48 @@ template.innerHTML = `
 
 <div id="demo-app">
     <h1>CHART GENERATOR</h1>
-    <div id="dataInputs">
-        <div id="textInputs">
-            <input type="text">
-            <input type="text">
-            <input type="text">
-            <input type="text">
-            <input type="text">
+    <div id="inputs">
+        <div id="dataInputs">
+            <div id="textInputs">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+                <input type="text">
+            </div>
+            <div id="numberInputs">
+                <input type="number">
+                <input type="number">
+                <input type="number">
+                <input type="number">
+                <input type="number">
+            </div>
         </div>
-        <div id="numberInputs">
-            <input type="number">
-            <input type="number">
-            <input type="number">
-            <input type="number">
-            <input type="number">
+        <div id="optionsInputs">
+            <div>
+                <label for="width">Width:</label>
+                <input id="width" type="number">
+            </div>
+
+            <div>
+                <label for="height">Height:</label>
+                <input id="height" type="number">
+            </div>
+
+            <div>
+                <label for="title">Title:</label>
+                <input id="title" type="text">
+            </div>
+
+            <div>
+                <label for="color">Color:</label>
+                <input id="color" type="text">
+            </div>
+
+            <div>
+                <label for="font">Font:</label>
+                <input id="font" type="text">
+            </div>
         </div>
     </div>
     <div id="buttons">
@@ -108,7 +160,8 @@ customElements.define('demo-app',
         #pieButton
         #textInputs
         #numberInputs
-        #chart
+        #optionsInputs
+        #chartElement
 
         /**
          * Creates an instance of the current type.
@@ -124,7 +177,7 @@ customElements.define('demo-app',
             this.#pieButton = this.shadowRoot.querySelector('#pieButton')
             this.#textInputs = this.shadowRoot.querySelectorAll('input[type="text"]')
             this.#numberInputs = this.shadowRoot.querySelectorAll('input[type="number"]')
-            this.#chart = this.shadowRoot.querySelector('#chart')
+            this.#chartElement = this.shadowRoot.querySelector('#chart')
 
             this.chart = new Chart()
             this.abortController = new AbortController()
@@ -191,7 +244,7 @@ customElements.define('demo-app',
 
         #addBarChart(data) {
             const barChart = this.chart.createBarChart(data)
-            this.#chart.appendChild(barChart)
+            this.#chartElement.appendChild(barChart)
         }
 
         #addLineGraph(data) {
