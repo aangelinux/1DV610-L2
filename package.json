@@ -1,7 +1,7 @@
 {
   "name": "chart-generator",
   "version": "1.0.0",
-  "description": "Library for generating charts from data.",
+  "description": "Library for generating charts.",
   "type": "module",
   "browser": "test/demo.js",
   "directories": {
