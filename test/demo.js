@@ -175,8 +175,8 @@ customElements.define('demo-app',
             this.#barButton = this.shadowRoot.querySelector('#barButton')
             this.#lineButton = this.shadowRoot.querySelector('#lineButton')
             this.#pieButton = this.shadowRoot.querySelector('#pieButton')
-            this.#textInputs = this.shadowRoot.querySelectorAll('input[type="text"]')
-            this.#numberInputs = this.shadowRoot.querySelectorAll('input[type="number"]')
+            this.#textInputs = this.shadowRoot.querySelector('#textInputs').querySelectorAll('input[type="text"]')
+            this.#numberInputs = this.shadowRoot.querySelector('#numberInputs').querySelectorAll('input[type="number"]')
             this.#chartElement = this.shadowRoot.querySelector('#chart')
 
             this.chart = new Chart()
@@ -219,7 +219,9 @@ customElements.define('demo-app',
             let dataArraysObject
 
             this.#textInputs.forEach((textInput) => {
-                textDataArray.push(textInput.value)
+                if (textInput.value) {
+                    textDataArray.push(textInput.value)
+                }
             })
             this.#numberInputs.forEach((numberInput) => {
                 numberDataArray.push(numberInput.value)
@@ -235,9 +237,11 @@ customElements.define('demo-app',
             for (let i = 0; i <= textDataArray.length - 1; i++) {
                 objectData.push({
                     text: textDataArray[i],
-                    number: numberDataArray[i]
+                    number: Number(numberDataArray[i])
                 })
             }
+
+            console.log(objectData)
 
             return objectData
         }
@@ -249,11 +253,13 @@ customElements.define('demo-app',
 
         #addLineGraph(data) {
             const lineGraph = this.chart.createLineGraph(data)
+            this.#chartElement.appendChild(lineGraph)
 
         }
 
         #addPieChart(data) {
             const pieChart = this.chart.createPieChart(data)
+            this.#chartElement.appendChild(pieChart)
         }
     }
 )
