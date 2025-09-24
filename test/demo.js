@@ -90,8 +90,6 @@ template.innerHTML = `
 
     #chart {
         margin-top: 20px;
-        width: 550px;
-        height: 300px;
     }
 </style>
 
