@@ -1,1 +1,1 @@
-- Use different rules for the reflection tables; don't use the same one or two for all 5 issues
+<!-- Use different rules for the reflection tables; don't use the same one or two for all 5 issues -->
