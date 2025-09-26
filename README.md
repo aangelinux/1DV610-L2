@@ -19,12 +19,14 @@
 | Data[i] | Object | Keys (see Data Schema)     | 2      |
 | Options | Object | Keys (see Options Schemas) | 0 - 5  |
   
+---
 ### Data Schema
 | Key   | Type   | Allowed values           |
 | ----- | ------ | ------------------------ |
 | name  | string |                          |
 | value | number | (-1 000 000) - 1 000 000 |
   
+---
 ### Options Schemas
 #### Options: Linear Charts
 | Key    | Type   | Allowed values                                   |
@@ -35,6 +37,7 @@
 | color  | string | red, orange, yellow, green, blue, indigo, violet |
 | font   | string | Arial, Verdana, Tahoma, Times New Roman, Georgia |
   
+---
 #### Options: Radial Charts
 | Key    | Type   | Allowed values                                   |
 | ------ | ------ | ------------------------------------------------ |
@@ -44,7 +47,7 @@
   
 
 ## Code examples
-### Create a bar chart displaying monthly rainfall
+#### Create a bar chart displaying monthly rainfall
 ```
 const data = [
     {
@@ -70,8 +73,8 @@ const rainfallChart = chart.createBarChart(data, linearOptions)
 
 rainfallChart.render()
 ```
-
-### Validate new inputs and create a new pie chart
+---
+#### Validate new inputs and create a new pie chart
 ```
 chart.clearChart()
 
@@ -83,8 +86,8 @@ newRainfallChart.render()
 ```
   
 ## Assignment files
-Reflektioner: https://github.com/aangelinux/1DV610-L2/blob/main/assignment/reflektion.md
-Testrapport: https://github.com/aangelinux/1DV610-L2/blob/main/assignment/testrapport.md
+Reflektioner: https://github.com/aangelinux/1DV610-L2/blob/main/assignment/reflektion.md  
+Testrapport: https://github.com/aangelinux/1DV610-L2/blob/main/assignment/testrapport.md  
   
 
 ## Version
