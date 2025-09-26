@@ -14,7 +14,7 @@ To use the interface, you create an instance of the class Chart. The interface c
 - createLineGraph(data, options)
 - createPieChart(data, options)
   
-Each method accepts two parameters and returns a <div> containing the chart. The charts are rendered with SVG elements.  
+Each method accepts two parameters and returns a div element containing the chart. The charts are rendered with SVG elements.  
   
 The options object has two different schemas, depending on which type of chart is being created: linear or radial. See **Options Schemas** and **Data Schema** below.  
   
