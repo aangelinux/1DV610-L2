@@ -14,10 +14,11 @@ To use the interface, you create an instance of the class Chart. The interface c
 - createLineGraph(data, options)
 - createPieChart(data, options)
   
-Each method accepts two parameters and returns an object of the chosen chart type. To render the chart, you call the object's render() method. The charts are rendered with SVG elements.  
+Each method accepts two parameters and returns a <div> containing the chart. The charts are rendered with SVG elements.  
   
 The options object has two different schemas, depending on which type of chart is being created: linear or radial. See **Options Schemas** and **Data Schema** below.  
-Data and options are automatically validated before rendering the chart, and an exception is thrown if they fail any validation check. If you want to validate either object before creating a chart, you can call these methods:
+  
+Data and options are automatically validated before rendering the chart, and an exception is thrown if they fail any validation checks. If you want to validate either object before creating a chart, you can call these methods:
 - validateData(data)
 - validateOptions(options)
   
@@ -29,14 +30,14 @@ Finally, you can call any of these helper methods:
 Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema. The chart will use the default options as defined in the table below.  
   
 ### Default options
-| Key    | Values           |
-| ------ | ---------------- |
-| width  | 550              |
-| height | 300              |
-| radius | 150              |
-| title  | Data Chart       |
-| color  | darkred          |
-| font   | Monaco monospace |
+| Key    | Values            |
+| ------ | ----------------- |
+| width  | 550               |
+| height | 300               |
+| radius | 150               |
+| title  | Data Chart        |
+| color  | darkred           |
+| font   | Monaco, monospace |
   
 
 ## Valid Objects
@@ -97,8 +98,6 @@ const linearOptions = {
 
 const chart = new Chart()
 const rainfallChart = chart.createBarChart(data, linearOptions)
-
-rainfallChart.render()
 ```
 ---
 #### Validate new inputs and create a new pie chart
@@ -109,7 +108,6 @@ chart.validateData(newData)
 chart.validateOptions(newOptions)
 
 const newRainfallChart = chart.createPieChart(newData, newOptions)
-newRainfallChart.render()
 ```
   
 ## Assignment files
@@ -131,4 +129,5 @@ Licensed under the MIT License.
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-![KFC](https://img.shields.io/badge/KFC-F40027?style=for-the-badge&logo=kfc&logoColor=white)
+![Made with love and](https://img.shields.io/badge/KFC-F40027?style=for-the-badge&logo=kfc&logoColor=white)
+![Made with love and](https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white)

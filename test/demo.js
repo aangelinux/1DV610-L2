@@ -236,8 +236,8 @@ customElements.define('demo-app',
 
             for (let i = 0; i <= textDataArray.length - 1; i++) {
                 objectData.push({
-                    text: textDataArray[i],
-                    number: Number(numberDataArray[i])
+                    name: textDataArray[i],
+                    value: Number(numberDataArray[i])
                 })
             }
 
