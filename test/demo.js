@@ -216,13 +216,15 @@ customElements.define('demo-app',
             let numberDataArray = []
             let dataArraysObject
 
-            this.#textInputs.forEach((textInput) => {
+            this.#textInputs.forEach((textInput) => {  // Extract
                 if (textInput.value) {
                     textDataArray.push(textInput.value)
                 }
             })
-            this.#numberInputs.forEach((numberInput) => {
-                numberDataArray.push(numberInput.value)
+            this.#numberInputs.forEach((numberInput) => {  // Extract
+                if (numberInput.value) {
+                    numberDataArray.push(numberInput.value)
+                }
             })
 
             return dataArraysObject = { textDataArray, numberDataArray }
@@ -238,8 +240,6 @@ customElements.define('demo-app',
                     number: Number(numberDataArray[i])
                 })
             }
-
-            console.log(objectData)
 
             return objectData
         }
