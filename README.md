@@ -2,14 +2,41 @@
 ## Project
 <!-- Screenshots! -->
   
-  
 
 ## Installation
 
-
-
+  
+  
 ## Usage
-
+### Methods
+To use the interface, you create an instance of the class Chart. The interface contains three main methods:  
+- createBarChart(data, options)
+- createLineGraph(data, options)
+- createPieChart(data, options)
+  
+Each method accepts two parameters and returns an object of the chosen chart type. To render the chart, you call the object's render() method. The charts are rendered with SVG elements.  
+  
+The options object has two different schemas, depending on which type of chart is being created: linear or radial. See **Options Schemas** and **Data Schema** below.  
+Data and options are automatically validated before rendering the chart, and an exception is thrown if they fail any validation check. If you want to validate either object before creating a chart, you can call these methods:
+- validateData(data)
+- validateOptions(options)
+  
+Finally, you can call any of these helper methods:  
+- get chart()
+- clearChart()
+- swapCSS(template)
+  
+Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema. The chart will use the default options as defined in the table below.  
+  
+### Default options
+| Key    | Values           |
+| ------ | ---------------- |
+| width  | 550              |
+| height | 300              |
+| radius | 150              |
+| title  | Data Chart       |
+| color  | darkred          |
+| font   | Monaco monospace |
   
 
 ## Valid Objects
