@@ -14,11 +14,11 @@ To use the interface, you create an instance of the class Chart. The interface c
 - createLineGraph(data, options)
 - createPieChart(data, options)
   
-Each method accepts two parameters and returns a div element containing the chart. The charts are rendered with SVG elements. Only one chart can be rendered per Chart instance.  
+Each method accepts two parameters and returns a div element containing the chart, and the chart elements are rendered using SVG. Only one chart can be rendered per Chart instance; if you call one of these methods on a Chart instance that already contains a rendered chart, it will be overriden.  
   
 The data object stores data in the form of objects containing a name and a value. The options object stores configurable style rules for the chart. Static style rules are stored in a default CSS template.  
   
-Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema. The chart will use the default options as defined in the table below.  
+Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema, the chart will use the default options as defined in the table below.  
 The options object has two different schemas depending on the type of chart being created. See **Options Schemas** and **Data Schema** below.  
   
 Data and options are automatically validated before rendering the chart, and an exception is thrown if they fail any validation checks. If you want to validate either object before creating a chart, you can call these methods:
@@ -27,8 +27,8 @@ Data and options are automatically validated before rendering the chart, and an 
   
 Finally, you can call any of these helper methods:  
 - get chart()
-- clearChart()
-- swapCSS(template)
+- resetChart()
+- replaceStaticCSS(template)
   
 ### Default options
 | Key    | Values            |
@@ -103,14 +103,17 @@ const rainfallChart = chart.createBarChart(data, linearOptions)
 ---
 #### Validate new inputs and create a new pie chart
 ```
-chart.clearChart()
-
 chart.validateData(newData)
 chart.validateOptions(newOptions)
 
 const newRainfallChart = chart.createPieChart(newData, newOptions)
 ```
   
+  
+## Contribution
+
+
+
 ## Assignment files
 Reflektioner: https://github.com/aangelinux/1DV610-L2/blob/main/assignment/reflektion.md  
 Testrapport: https://github.com/aangelinux/1DV610-L2/blob/main/assignment/testrapport.md  

@@ -1,1 +1,35 @@
 <!-- Use different rules for the reflection tables; don't use the same one or two for all 5 issues -->
+
+# Kapitel 2
+| Namn                                                  | Förklaring                                                                                         | Reflektion/Regler                                                                                                                                                                                                                                      |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Scale                                                 | Klassnamn på en helper klass som hanterar uträkningar                                              | Use Intention-Revealing Names: Osäker på om "Scale" är bästa valet. Klassen hanterar de flesta uträkningarna, även sådana som inte är helt relaterade till diagrammens skala. "Calculator" hade kanske varit bättre                                    |
+| resetChart()                                          | Metodnamn från det publika interfacet                                                              | Use Pronounceable Names: resetChart går att uttala (och förhoppningsvis även resten av namnen i det publika interfacet)                                                                                                                                |
+| Configuration                                         | Klassnamn på en helper klass som konfigurerar options objektet (diagrammets höjd, bredd, färg osv) | Class Names: Ska vara substantiv och undvika namn som "Manager", "Processor", "Info" osv.<br>Use Intention-Revealing Names: Det hade kunnat vara tydligare att det konfigurerar just options objektet, men med risk för att det blir onödigt långt     |
+| Validator, validateOptions(), validateData()          | Klassnamn på en helper klass, metodnamn från det publika interfacet                                | Pick One Word Per Concept: Jag valde namnen validateOptions och validateData för att det skulle vara tydligt vilken klass de hör till och vad de gör.<br>Method names: Ska vara verb.                                                                  |
+| createBarChart(), createPieChart(), createLineGraph() | Metodnamn från det publika interfacet                                                              | Avoid Disinformation: Dessa metodnamn kan vara lite missvisande för de skapar inte bara diagram, de tar även bort existerande diagram innan de genererar ett nytt. Jag valde att behålla det så länge eftersom denna info finns med i dokumentationen. |
+| removeStaticCSS(template)                             | Metodnamn från det publika interfacet                                                              | Make Meaningful Distinctions: Det kan ha varit onödigt, men jag valde att lägga till "Static" i namnet för skilja det från dynamiska CSS regler som skickas in via options objektet.                                                                   |
+  
+
+
+---
+## Reflektion
+
+
+
+
+# Kapitel 3
+| Metodnamn                                                                 | Länk | Antal rader | Reflektion/Regler                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------------------------------- | ---- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| _getPieSlices(dataDecimals, intialCoordinates, centerCoordinates, radius) |      | 15          | Small: Bryter lite mot regeln om att metoder ska vara små. Det går att bryta ut fler kodblock, men jag vill också att det ska vara tydligt vad som händer (det krävs många uträkningar för att räkna ut dimensionerna av en tårtbit i ett tårtdiagram!) Function Arguments: Metoderna accepterar väldigt många argument. Alla är nödvändiga, men man kanske kan lösa det genom att packetera alla variabler i ett objekt |
+| #validateOptionValues(options)                                            |      | 14          | Blocks and Indenting: Bryter mot regeln om nested functions och indenting. Det är många options keys som ska valideras så jag samlade alla på ett ställe, men det skulle sannolikt vara bättre att bryta ut några block                                                                                                                                                                                                  |
+| #createPath(sliceData)                                                    |      | 13          | Do One Thing: Metoden är aningen lång, men anledingen är att <path> elementet tar många variabler som jag delade upp på olika rader för att göra den enklare att läsa. Så metoden är lång, men den följer regeln om att bara göra en sak.                                                                                                                                                                                |
+| #setLayout()                                                              |      | 14          | Do One Thing: Metoden skulle kunna delas upp i en som sätter layout för diagram axlarna och en annan som sätter layout för data markörerna; just nu gör den två saker.<br>Have No Side Effects: Den har inga sidoeffekter.                                                                                                                                                                                               |
+| render(chart)                                                             |      | 11          | Verbs and Keywords: Metodnamnet är ett verb och parametern är ett substantiv, så att de formar ett par enligt denna regeln.                                                                                                                                                                                                                                                                                              |
+  
+---
+## Reflektion
+
+  
+
+# Kodkvalitetsreflektion
