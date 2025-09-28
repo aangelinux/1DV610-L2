@@ -16,7 +16,7 @@ To use the interface, you create an instance of the class Chart. The interface c
   
 Each method accepts two parameters and returns a div element containing the chart. The charts are rendered with SVG elements. Only one chart can be rendered per Chart instance.  
   
-The data object stores the data to be visualized in the chart, in the form of objects containing name and value. The options object stores configurable style rules for the charts, while static style rules are stored in a default CSS template.  
+The data object stores data in the form of objects containing a name and a value. The options object stores configurable style rules for the chart. Static style rules are stored in a default CSS template.  
   
 Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema. The chart will use the default options as defined in the table below.  
 The options object has two different schemas depending on the type of chart being created. See **Options Schemas** and **Data Schema** below.  
@@ -58,13 +58,13 @@ Finally, you can call any of these helper methods:
 ---
 ### Options Schemas
 #### Options: Linear Charts
-| Key    | Type   | Allowed values                                   |
-| ------ | ------ | ------------------------------------------------ |
-| width  | number | 200 - 1000                                       |
-| height | number | 150 - 800                                        |
-| title  | string |                                                  |
-| color  | string | <!-- red, orange, yellow, green, blue, indigo, violet --> |
-| font   | string | <!-- Arial, Verdana, Tahoma, Times New Roman, Georgia --> |
+| Key    | Type   | Allowed values                                            |
+| ------ | ------ | --------------------------------------------------------- |
+| width  | number | 200 - 1000                                                |
+| height | number | 150 - 800                                                 |
+| title  | string |                                                           |
+| color  | string | darkred, red, orange, yellow, green, blue, indigo, violet |
+| font   | string | (Monaco, monospace), Arial, Verdana, Tahoma, Times New Roman, Georgia|
   
 ---
 #### Options: Radial Charts
@@ -72,7 +72,7 @@ Finally, you can call any of these helper methods:
 | ------ | ------ | ------------------------------------------------ |
 | radius | number | 100 - 400                                        |
 | title  | string |                                                  |
-| font   | string | <!-- Arial, Verdana, Tahoma, Times New Roman, Georgia --> |
+| font   | string | (Monaco, monospace), Arial, Verdana, Tahoma, Times New Roman, Georgia |
   
 
 ## Code examples
@@ -94,7 +94,7 @@ const linearOptions = {
     height: 250,
     title: "Monthly Rainfall By City",
     color: "blue",
-    font: "Georgia"
+    font: "Monaco, monospace"
 }
 
 const chart = new Chart()
