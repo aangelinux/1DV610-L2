@@ -14,9 +14,12 @@ To use the interface, you create an instance of the class Chart. The interface c
 - createLineGraph(data, options)
 - createPieChart(data, options)
   
-Each method accepts two parameters and returns a div element containing the chart. The charts are rendered with SVG elements.  
+Each method accepts two parameters and returns a div element containing the chart. The charts are rendered with SVG elements. Only one chart can be rendered per Chart instance.  
   
-The options object has two different schemas, depending on which type of chart is being created: linear or radial. See **Options Schemas** and **Data Schema** below.  
+The data object stores the data to be visualized in the chart, in the form of objects containing name and value. The options object stores configurable style rules for the charts, while static style rules are stored in a default CSS template.  
+  
+Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema. The chart will use the default options as defined in the table below.  
+The options object has two different schemas depending on the type of chart being created. See **Options Schemas** and **Data Schema** below.  
   
 Data and options are automatically validated before rendering the chart, and an exception is thrown if they fail any validation checks. If you want to validate either object before creating a chart, you can call these methods:
 - validateData(data)
@@ -26,8 +29,6 @@ Finally, you can call any of these helper methods:
 - get chart()
 - clearChart()
 - swapCSS(template)
-  
-Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema. The chart will use the default options as defined in the table below.  
   
 ### Default options
 | Key    | Values            |
@@ -62,8 +63,8 @@ Passing an options object is optional. It is also not required to pass an option
 | width  | number | 200 - 1000                                       |
 | height | number | 150 - 800                                        |
 | title  | string |                                                  |
-| color  | string | red, orange, yellow, green, blue, indigo, violet |
-| font   | string | Arial, Verdana, Tahoma, Times New Roman, Georgia |
+| color  | string | <!-- red, orange, yellow, green, blue, indigo, violet --> |
+| font   | string | <!-- Arial, Verdana, Tahoma, Times New Roman, Georgia --> |
   
 ---
 #### Options: Radial Charts
@@ -71,7 +72,7 @@ Passing an options object is optional. It is also not required to pass an option
 | ------ | ------ | ------------------------------------------------ |
 | radius | number | 100 - 400                                        |
 | title  | string |                                                  |
-| font   | string | Arial, Verdana, Tahoma, Times New Roman, Georgia |
+| font   | string | <!-- Arial, Verdana, Tahoma, Times New Roman, Georgia --> |
   
 
 ## Code examples
