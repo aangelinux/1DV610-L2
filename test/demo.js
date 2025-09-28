@@ -250,10 +250,8 @@ customElements.define('demo-app',
         }
 
         #addLineGraph(data) {
-            // const lineGraph = this.chart.createLineGraph(data)
-            // this.#chartElement.appendChild(lineGraph)
-
-            this.chart.clearChart()
+            const lineGraph = this.chart.createLineGraph(data)
+            this.#chartElement.appendChild(lineGraph)
         }
 
         #addPieChart(data) {
