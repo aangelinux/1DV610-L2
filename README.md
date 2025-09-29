@@ -14,7 +14,7 @@ To use the interface, you create an instance of the class Chart. The interface c
 - createLineGraph(data, options)
 - createPieChart(data, options)
   
-Each method accepts two parameters and returns a div element containing the chart, and the chart elements are rendered using SVG. Only one chart can be rendered per Chart instance; if you call one of these methods on a Chart instance that already contains a rendered chart, it will be overriden.  
+Each method accepts two parameters and returns a div element containing the chart, and the chart elements are rendered using SVG. Only one chart can be rendered per Chart instance; if you call one of these methods on a Chart instance that already contains a rendered chart, it will be overwritten.  
   
 The data object stores data in the form of objects containing a name and a value. The options object stores configurable style rules for the chart. Static style rules are stored in a default CSS template.  
   

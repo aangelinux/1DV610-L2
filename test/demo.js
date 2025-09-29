@@ -103,8 +103,10 @@ template.innerHTML = `
                 <input type="text">
                 <input type="text">
                 <input type="text">
+                <input type="text">
             </div>
             <div id="numberInputs">
+                <input type="number">
                 <input type="number">
                 <input type="number">
                 <input type="number">
@@ -114,28 +116,33 @@ template.innerHTML = `
         </div>
         <div id="optionsInputs">
             <div>
-                <label for="width">Width:</label>
-                <input id="width" type="number">
+                <label for="width" name="width">Width:</label>
+                <input id="options" name="width" type="number">
             </div>
 
             <div>
-                <label for="height">Height:</label>
-                <input id="height" type="number">
+                <label for="height" name="height">Height:</label>
+                <input id="options" name="height"type="number">
             </div>
 
             <div>
-                <label for="title">Title:</label>
-                <input id="title" type="text">
+                <label for="radius" name="radius">Radius:</label>
+                <input id="options" name="radius" type="number">
             </div>
 
             <div>
-                <label for="color">Color:</label>
-                <input id="color" type="text">
+                <label for="title" name="title">Title:</label>
+                <input id="options" name="title" type="text">
             </div>
 
             <div>
-                <label for="font">Font:</label>
-                <input id="font" type="text">
+                <label for="color" name="color">Color:</label>
+                <input id="options" name="color" type="text">
+            </div>
+
+            <div>
+                <label for="font" name="font">Font:</label>
+                <input id="options" name="font" type="text">
             </div>
         </div>
     </div>
@@ -158,6 +165,8 @@ customElements.define('demo-app',
         #pieButton
         #textInputs
         #numberInputs
+        #options
+        #optionsLabels
         #optionsInputs
         #chartElement
 
@@ -173,8 +182,14 @@ customElements.define('demo-app',
             this.#barButton = this.shadowRoot.querySelector('#barButton')
             this.#lineButton = this.shadowRoot.querySelector('#lineButton')
             this.#pieButton = this.shadowRoot.querySelector('#pieButton')
-            this.#textInputs = this.shadowRoot.querySelector('#textInputs').querySelectorAll('input[type="text"]')
-            this.#numberInputs = this.shadowRoot.querySelector('#numberInputs').querySelectorAll('input[type="number"]')
+            this.#options = this.shadowRoot.querySelectorAll('#optionsInputs')
+
+            this.#textInputs = this.shadowRoot.querySelector('#textInputs')
+                .querySelectorAll('input[type="text"]')
+            this.#numberInputs = this.shadowRoot.querySelector('#numberInputs')
+                .querySelectorAll('input[type="number"]')
+
+            this.#optionsInputs = this.shadowRoot.querySelectorAll('#options')
             this.#chartElement = this.shadowRoot.querySelector('#chart')
 
             this.chart = new Chart()
@@ -186,21 +201,33 @@ customElements.define('demo-app',
          */
         connectedCallback() {
             this.#barButton.addEventListener('click', () => {
+                const objectArrays = this.#gatherOptionsFromInputs()
+                const optionsObject = this.#saveOptionInObject(objectArrays)
+
                 const dataArrays = this.#gatherDataFromInputs()
                 const objectData = this.#saveDataInObject(dataArrays)
-                this.#addBarChart(objectData)
+
+                this.#addBarChart(objectData, optionsObject)
             }, { signal: this.abortController.signal })
 
             this.#lineButton.addEventListener('click', () => {
+                const objectArrays = this.#gatherOptionsFromInputs()
+                const optionsObject = this.#saveOptionInObject(objectArrays)
+
                 const dataArrays = this.#gatherDataFromInputs()
                 const objectData = this.#saveDataInObject(dataArrays)
-                this.#addLineGraph(objectData)
+
+                this.#addLineGraph(objectData, optionsObject)
             }, { signal: this.abortController.signal })
 
             this.#pieButton.addEventListener('click', () => {
+                const objectArrays = this.#gatherOptionsFromInputs()
+                const optionsObject = this.#saveOptionInObject(objectArrays)
+
                 const dataArrays = this.#gatherDataFromInputs()
                 const objectData = this.#saveDataInObject(dataArrays)
-                this.#addPieChart(objectData)
+
+                this.#addPieChart(objectData, optionsObject)
             }, { signal: this.abortController.signal })
         }
 
@@ -216,18 +243,39 @@ customElements.define('demo-app',
             let numberDataArray = []
             let dataArraysObject
 
-            this.#textInputs.forEach((textInput) => {  // Extract
-                if (textInput.value) {
-                    textDataArray.push(textInput.value)
-                }
-            })
-            this.#numberInputs.forEach((numberInput) => {  // Extract
-                if (numberInput.value) {
-                    numberDataArray.push(numberInput.value)
-                }
-            })
-
+            this.#extractValues(this.#textInputs, textDataArray)
+            this.#extractValues(this.#numberInputs, numberDataArray)
+            
             return dataArraysObject = { textDataArray, numberDataArray }
+        }
+
+        #gatherOptionsFromInputs() {
+            let optionLabelArray = []
+            let optionValueArray = []
+            let optionArraysObject
+
+            this.#extractName(this.#optionsInputs, optionLabelArray)
+            this.#extractValues(this.#optionsInputs, optionValueArray)
+
+            return optionArraysObject = { optionLabelArray, optionValueArray }
+        }
+
+        #extractValues(elementArray, inputArray) {
+            elementArray.forEach((element) => {
+                if (element.value && isNaN(element.value)) {
+                    inputArray.push(element.value)
+                } else if (element.value && !isNaN(element.value)) {
+                    inputArray.push(Number(element.value))
+                }
+            })
+        }
+
+        #extractName(elementArray, inputArray) {
+            elementArray.forEach((element) => {
+                if (element.value) {
+                    inputArray.push(element.name)
+                }
+            })
         }
 
         #saveDataInObject(dataArrays) {
@@ -244,18 +292,33 @@ customElements.define('demo-app',
             return objectData
         }
 
-        #addBarChart(data) {
-            const barChart = this.chart.createBarChart(data)
+        #saveOptionInObject(optionArrays) {
+            const { optionLabelArray, optionValueArray } = optionArrays
+            let optionsObject = {}
+
+            for (let i = 0; i <= optionLabelArray.length - 1; i++) {
+                let option = optionLabelArray[i]
+                let value = optionValueArray[i]
+
+                Object.assign(optionsObject, { [option]: value })
+            }
+
+            console.log(optionsObject)
+            return optionsObject
+        }
+
+        #addBarChart(data, options) {
+            const barChart = this.chart.createBarChart(data, options)
             this.#chartElement.appendChild(barChart)
         }
 
-        #addLineGraph(data) {
-            const lineGraph = this.chart.createLineGraph(data)
+        #addLineGraph(data, options) {
+            const lineGraph = this.chart.createLineGraph(data, options)
             this.#chartElement.appendChild(lineGraph)
         }
 
-        #addPieChart(data) {
-            const pieChart = this.chart.createPieChart(data)
+        #addPieChart(data, options) {
+            const pieChart = this.chart.createPieChart(data, options)
             this.#chartElement.appendChild(pieChart)
         }
     }
