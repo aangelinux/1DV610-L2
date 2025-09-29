@@ -101,10 +101,21 @@ const chart = new Chart()
 const rainfallChart = chart.createBarChart(data, linearOptions)
 ```
 ---
-#### Validate new inputs and create a new pie chart
+#### Validate new inputs, replace CSS template, and create a new pie chart
 ```
 chart.validateData(newData)
 chart.validateOptions(newOptions)
+
+const template = `
+<style>
+    #slice {
+        stroke-color: blue;
+        stroke-width: 4;
+    }
+</style>
+`
+
+chart.replaceStaticCSS(template)
 
 const newRainfallChart = chart.createPieChart(newData, newOptions)
 ```
