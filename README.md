@@ -123,13 +123,8 @@ const newRainfallChart = chart.createPieChart(newData, newOptions)
   
 ## Contribution
 
-
-
-## Assignment files
-Reflektioner: https://github.com/aangelinux/1DV610-L2/blob/main/assignment/reflektion.md  
-Testrapport: https://github.com/aangelinux/1DV610-L2/blob/main/assignment/testrapport.md  
   
-
+  
 ## Version
 1.0.0
 
