@@ -4,6 +4,7 @@
  */
 
 import { Chart } from '../lib/public/chart.js'
+import { testTemplate } from './testTemplate.js'
 
 const template = document.createElement('template')
 template.innerHTML = `
@@ -150,8 +151,11 @@ template.innerHTML = `
         <button id="barButton">GENERATE BAR CHART</button>
         <button id="lineButton">GENERATE LINE GRAPH</button>
         <button id="pieButton">GENERATE PIE CHART</button>
+        <button id="clearButton">CLEAR CHART</button>
+        <button id="updateCSSButton">UPDATE CSS</button>
+        <button id="getChartButton">GET CURRENT CHART</button>
     </div>
-    <div id="chart"></div>
+    <div id="chartElement"></div>
 </div>
 `
 
@@ -160,14 +164,18 @@ customElements.define('demo-app',
      * Encapsulates logic for the demo-app component.
      */
     class extends HTMLElement {
+        // Buttons
         #barButton
         #lineButton
         #pieButton
+        #clearButton
+        #updateCSSButton
+        #getChartButton
+        // Inputs
         #textInputs
         #numberInputs
-        #options
-        #optionsLabels
         #optionsInputs
+        // Chart div
         #chartElement
 
         /**
@@ -182,16 +190,17 @@ customElements.define('demo-app',
             this.#barButton = this.shadowRoot.querySelector('#barButton')
             this.#lineButton = this.shadowRoot.querySelector('#lineButton')
             this.#pieButton = this.shadowRoot.querySelector('#pieButton')
-            this.#options = this.shadowRoot.querySelectorAll('#optionsInputs')
+            this.#clearButton = this.shadowRoot.querySelector('#clearButton')
+            this.#updateCSSButton = this.shadowRoot.querySelector('#updateCSSButton')
+            this.#getChartButton = this.shadowRoot.querySelector('#getChartButton')
 
             this.#textInputs = this.shadowRoot.querySelector('#textInputs')
                 .querySelectorAll('input[type="text"]')
             this.#numberInputs = this.shadowRoot.querySelector('#numberInputs')
                 .querySelectorAll('input[type="number"]')
-
             this.#optionsInputs = this.shadowRoot.querySelectorAll('#options')
-            this.#chartElement = this.shadowRoot.querySelector('#chart')
 
+            this.#chartElement = this.shadowRoot.querySelector('#chartElement')
             this.chart = new Chart()
             this.abortController = new AbortController()
         }
@@ -228,6 +237,18 @@ customElements.define('demo-app',
                 const objectData = this.#saveDataInObject(dataArrays)
 
                 this.#addPieChart(objectData, optionsObject)
+            }, { signal: this.abortController.signal })
+
+            this.#clearButton.addEventListener('click', () => {
+                this.#clearChart()
+            }, { signal: this.abortController.signal })
+
+            this.#updateCSSButton.addEventListener('click', () => {
+                this.#updateCSS(testTemplate)
+            }, { signal: this.abortController.signal })
+
+            this.#getChartButton.addEventListener('click', () => {
+                this.#getChart()
             }, { signal: this.abortController.signal })
         }
 
@@ -303,7 +324,6 @@ customElements.define('demo-app',
                 Object.assign(optionsObject, { [option]: value })
             }
 
-            console.log(optionsObject)
             return optionsObject
         }
 
@@ -320,6 +340,19 @@ customElements.define('demo-app',
         #addPieChart(data, options) {
             const pieChart = this.chart.createPieChart(data, options)
             this.#chartElement.appendChild(pieChart)
+        }
+
+        #clearChart() {
+            this.chart.resetChart()
+        }
+
+        #updateCSS(template) {
+            this.chart.replaceStaticCSS(template)
+        }
+
+        #getChart() {
+            const currentChart = this.chart.chart.cloneNode(true)
+            this.#chartElement.appendChild(currentChart)
         }
     }
 )
