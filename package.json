@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Library for generating charts.",
   "type": "module",
-  "browser": "test/demoApp/demo.js",
+  "files": ["lib/"],
+  "main": "lib/public/chart.js",
   "directories": {
     "lib": "lib"
   },
-  "main": "lib/public/chart.js",
   "jest": {
     "testEnvironment": "jsdom"
   },

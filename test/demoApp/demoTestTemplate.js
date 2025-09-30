@@ -20,8 +20,7 @@ testTemplate.innerHTML =
 }
 
 #yAxisRow {
-    align-self: flex-start;
-    border-top: 1px solid black;
+    outline: 1px solid black;
     grid-area: 1 / 1;
 }
 
