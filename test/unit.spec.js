@@ -7,7 +7,7 @@ import { describe, test, expect } from "@jest/globals"
 import { Chart } from "../lib/public/chart.js"
 
 describe("validateData() - object", () => {
-    test("throws RangeError if number of number of objects is outside range", () => {
+    test("#1 throws RangeError if number of number of objects is outside range", () => {
         const testData = [
             {
                 name: "Oslo",
@@ -23,7 +23,7 @@ describe("validateData() - object", () => {
 })
 
 describe("validateOptions() - object", () => {
-    test("throws RangeError if number of number of keys is outside range", () => {
+    test("#2 throws RangeError if number of number of keys is outside range", () => {
         const testOptions = {
             width: 550,
             height: 300,
@@ -42,7 +42,7 @@ describe("validateOptions() - object", () => {
 
 
 describe("validateData() - values", () => {
-    test("throws RangeError if value is outside range", () => {
+    test("#3.1 throws RangeError if value is outside range", () => {
         const testData = [
             {
                 name: "Oslo",
@@ -60,7 +60,7 @@ describe("validateData() - values", () => {
         }).toThrow(RangeError)
     })
 
-    test("throws TypeError if type is wrong", () => {
+    test("#3.2 throws TypeError if type is wrong", () => {
         const testData = [
             {
                 name: "Oslo",
@@ -78,7 +78,7 @@ describe("validateData() - values", () => {
         }).toThrow(TypeError)    
     })
 
-    test("throws SyntaxError if key doesn't exist", () => {
+    test("#3.3 throws SyntaxError if key doesn't exist", () => {
         const testData = [
             {
                 name: "Oslo",
@@ -96,7 +96,7 @@ describe("validateData() - values", () => {
         }).toThrow(SyntaxError)    
     })
 
-    test("returns nothing if data object is correct", () => {
+    test("#3.4 returns nothing if data object is correct", () => {
         const testData = [
             {
                 name: "Oslo",
@@ -117,7 +117,7 @@ describe("validateData() - values", () => {
 
 
 describe("validateOptions() - values", () => {
-    test("throws RangeError if value is outside range", () => {
+    test("#4.1 throws RangeError if value is outside range", () => {
         const testOptions = {
             width: 1001,
             height: 300,
@@ -132,7 +132,7 @@ describe("validateOptions() - values", () => {
         }).toThrow(RangeError)
     })
 
-    test("throws TypeError if type is wrong", () => {
+    test("#4.2 throws TypeError if type is wrong", () => {
         const testOptions = {
             width: "500",
             height: 300,
@@ -147,7 +147,7 @@ describe("validateOptions() - values", () => {
         }).toThrow(TypeError)
     })
 
-    test("throws RangeError if value is outside range", () => {
+    test("#4.3 throws RangeError if value is outside range", () => {
         const testOptions = {
             width: 550,
             height: 300,
@@ -162,7 +162,7 @@ describe("validateOptions() - values", () => {
         }).toThrow(SyntaxError)
     })
 
-    test("returns nothing if options object is correct", () => {
+    test("#4.4 returns nothing if options object is correct", () => {
         const testOptions = {
             width: 550,
             height: 300,
@@ -179,7 +179,7 @@ describe("validateOptions() - values", () => {
 })
 
 describe("validateOptions() - color & font", () => {
-    test("throws TypeError if color is invalid", () => {
+    test("#5.1 throws TypeError if color is invalid", () => {
         const testOptions = {
             width: 550,
             height: 300,
@@ -194,7 +194,7 @@ describe("validateOptions() - color & font", () => {
         }).toThrow(TypeError)
     })
 
-    test("throws TypeError if font is invalid", () => {
+    test("#5.2 throws TypeError if font is invalid", () => {
         const testOptions = {
             width: 550,
             height: 300,

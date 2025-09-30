@@ -18,7 +18,21 @@
   
   
 # Unit tests
-
-  
+| ID   | Description                                                | Expected Result | Status |
+| ---- | ---------------------------------------------------------- | --------------- | ------ |
+| #1   | Calls validateData() with incorrect number of data objects | RangeError      | ✅      |
+| #2   | Calls validateOptions() with incorrect number of keys      | RangeError      | ✅      |
+| #3.1 | Calls validateData() with data value outside of range      | RangeError      | ✅      |
+| #3.2 | Calls validateData() with incorrect type                   | TypeError       | ✅      |
+| #3.3 | Calls validateData() with invalid key                      | SyntaxError     | ✅      |
+| #3.4 | Calls validateData() with correct data object              | True            | ✅      |
+| #4.1 | Calls validateOptions() with value outside of range        | RangeError      | ✅      |
+| #4.2 | Calls validateOptions() with incorrect type                | TypeError       | ✅      |
+| #4.3 | Calls validateOptions() with invalid key                   | SyntaxError     | ✅      |
+| #4.4 | Calls validateOptions with correct options object          | True            | ✅      |
+| #5.1 | Calls validateOptions() with invalid color                 | TypeError       | ✅      |
+| #5.2 | Calls validateOptions() with invalid font                  | TypeError       | ✅      |
+   
   
 # Summary
+The library has been tested using manual tests as well as unit tests created with Jest. Most public methods were tested with manual tests to ensure the diagrams are correctly rendered. The methods for validating the data and options objects were tested with unit tests to account for all possible outcomes.
