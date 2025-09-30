@@ -3,8 +3,8 @@
  * @file test/demo.js
  */
 
-import { Chart } from '../lib/public/chart.js'
-import { testTemplate } from './testTemplate.js'
+import { Chart } from '../../lib/public/chart.js'
+import { testTemplate } from './demoTestTemplate.js'
 
 const template = document.createElement('template')
 template.innerHTML = `

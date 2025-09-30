@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "Library for generating charts.",
   "type": "module",
-  "browser": "test/demo.js",
+  "browser": "test/demoApp/demo.js",
   "directories": {
     "lib": "lib"
   },
+  "main": "lib/public/chart.js",
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "dev": "vite",
     "build": "vite build"
   },
@@ -18,6 +23,8 @@
   "author": "Angelina Larsson",
   "license": "MIT",
   "devDependencies": {
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
     "vite": "^6.3.6"
   }
 }
