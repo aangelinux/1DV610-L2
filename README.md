@@ -9,11 +9,11 @@ This library generates bar charts, line graphs, and pie charts from user data. T
 
 ## Installation
 ```
-npm install chart-generator
+npm install @aangelinux/chart-generator
 ```
 In your program:  
 ```
-import { Chart } from 'chart-generator'
+import { Chart } from '@aangelinux/chart-generator'
 ```
   
 
