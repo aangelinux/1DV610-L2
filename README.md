@@ -51,6 +51,7 @@ const chart = new Chart()
 const rainfallChart = chart.createBarChart(data, linearOptions)
 ```
   
+---
 Static style rules are stored in a default CSS template, which can be replaced by calling:  
 - replaceStaticCSS(template)  
   
@@ -69,6 +70,7 @@ chart.replaceStaticCSS(template)
 ```
 You will need to rewrite all static CSS rules if you want to use your own template, or use from the default template: [template](https://github.com/aangelinux/1DV610-L2/blob/main/lib/styles/cssTemplate.js)
   
+---
 Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema, the chart will use the default options as defined in the table below.  
 The options object has two different schemas depending on the type of chart being created. See **Options Schemas** and **Data Schema** below.  
   
