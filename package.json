@@ -1,9 +1,11 @@
 {
   "name": "@aangelinux/charts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates bar charts, line graphs, and pie charts.",
   "type": "module",
-  "files": ["lib/"],
+  "files": [
+    "lib/"
+  ],
   "main": "lib/public/chart.js",
   "directories": {
     "lib": "lib"
@@ -18,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aangelinux/1DV610-L2.git"
+    "url": "git+https://github.com/aangelinux/1DV610-L2.git"
   },
   "author": "Angelina Larsson",
   "license": "MIT",
