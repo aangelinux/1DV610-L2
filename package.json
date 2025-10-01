@@ -1,7 +1,7 @@
 {
   "name": "chart-generator",
   "version": "1.0.0",
-  "description": "Library for generating charts.",
+  "description": "Generates bar charts, line graphs, and pie charts.",
   "type": "module",
   "files": ["lib/"],
   "main": "lib/public/chart.js",
