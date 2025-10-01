@@ -1,5 +1,5 @@
 {
-  "name": "@aangelinux/chart-generator",
+  "name": "@aangelinux/charts",
   "version": "1.0.0",
   "description": "Generates bar charts, line graphs, and pie charts.",
   "type": "module",
