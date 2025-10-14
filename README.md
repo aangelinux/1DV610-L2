@@ -109,10 +109,10 @@ Finally, you can call any of these helper methods:
   
 ---
 ### Data Schema
-| Key   | Type   | Allowed values           |
-| ----- | ------ | ------------------------ |
-| name  | string |                          |
-| value | number | (-1 000 000) - 1 000 000 |
+| Key   | Type   | Allowed values  |
+| ----- | ------ | --------------- |
+| name  | string |                 |
+| value | number | 0 - 10 000 000  |
   
 ---
 ### Options Schemas

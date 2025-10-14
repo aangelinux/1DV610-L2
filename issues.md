@@ -4,10 +4,9 @@
   
 ### Issues  
 - ~~Remove gap between x-axis and end of y-axis~~
-- Improve algorithm for determining max y-axis value
-- Allow y-axis values above 1 000 000
-- Center pie chart on the graph
-- Add some more colors and fonts
+- ~~Improve algorithm for determining max y-axis value~~
+- ~~Raise highest allowed data value~~
+- ~~Add some more colors and fonts~~
 
 - Write data's name and value on pie slices
 - Render y-axis values to the left of the chart
