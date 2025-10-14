@@ -8,6 +8,6 @@
 - ~~Improve algorithm for determining max y-axis value~~
 - ~~Raise highest allowed data value~~
 - ~~Add some more colors and fonts~~
-- ~~Write data name on each pie slice~~
 
+- Add labels for pie slices
 - Render y-axis values to the left of the chart
