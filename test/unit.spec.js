@@ -50,7 +50,7 @@ describe("validateData() - values", () => {
             },
             {
                 name: "Stockholm",
-                value: 1000001
+                value: 10000001
             }
         ]
 

@@ -147,6 +147,7 @@ Contributions are welcome:
 - Make your changes, write clear commit messages.
 - Open a pull request and describe your changes.
 - For bugfixes/requests, open an issue.
+- Run unit tests with ```npm test```.
    
   
 ## Version

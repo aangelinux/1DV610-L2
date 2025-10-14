@@ -9,5 +9,6 @@
 - ~~Raise highest allowed data value~~
 - ~~Add some more colors and fonts~~
 
+- Fix screenshots in README
 - Add labels for pie slices
 - Render y-axis values to the left of the chart
