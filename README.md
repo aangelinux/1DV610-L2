@@ -8,11 +8,11 @@ This library generates bar charts, line graphs, and pie charts from user data. T
   
 
 ## Installation
-```
+```javascript
 npm install @aangelinux/charts
 ```
 In your program:  
-```
+```javascript
 import { Chart } from '@aangelinux/charts'
 ```
   
@@ -27,7 +27,7 @@ To use the interface, you create an instance of class Chart. The interface conta
 Each method accepts two parameters and returns a div element containing the chart. Only one chart can be rendered per Chart instance; if you call one of these methods on a Chart instance that already contains a rendered chart, it will be overwritten.  
   
 To create a simple bar chart with a custom style:  
-```
+```javascript
 const data = [
     {
         name: "Stockholm",
@@ -56,7 +56,7 @@ Static style rules are stored in a default CSS template, which can be replaced b
 - replaceStaticCSS(template)  
   
 To pass a custom stroke color for pie charts:  
-```
+```javascript
 const template = `
 <style>
     #slice {
@@ -79,7 +79,7 @@ Data and options are automatically validated before rendering the chart, and an 
 - validateOptions(options)
   
 Example:  
-```
+```javascript
 chart.validateData(newData)
 chart.validateOptions(newOptions)
 ```
@@ -122,8 +122,8 @@ Finally, you can call any of these helper methods:
 | width  | number | 200 - 1000                                                |
 | height | number | 150 - 800                                                 |
 | title  | string |                                                           |
-| color  | string | darkred, red, orange, yellow, green, blue, indigo, violet |
-| font   | string | (Monaco, monospace), Arial, Verdana, Tahoma, Times New Roman, Georgia|
+| color  | string | darkred, red, orange, yellow, green, blue, indigo, violet, darkolivegreen |
+| font   | string | (Monaco, monospace), Arial, Verdana, Tahoma, Times New Roman, Georgia, Lexend Light|
   
 ---
 #### Options: Radial Charts
@@ -131,13 +131,18 @@ Finally, you can call any of these helper methods:
 | ------ | ------ | ------------------------------------------------ |
 | radius | number | 100 - 400                                        |
 | title  | string |                                                  |
-| font   | string | (Monaco, monospace), Arial, Verdana, Tahoma, Times New Roman, Georgia |
+| font   | string | (Monaco, monospace), Arial, Verdana, Tahoma, Times New Roman, Georgia, Lexend Light |
   
 ### Errors
 If any exceptions are thrown, the chart will not be rendered.  
 Object values that are outside the defined ranges will throw a RangeError.  
 Object keys that are not of the correct types will throw a TypeError.  
 Object keys that are invalid will throw a SyntaxError.  
+  
+
+## Testing
+[Here](/test/demoApp/) you can find files for a demo app to test the module.  
+Simply copy them into your own repo, install the module, and run the app with Vite.  
   
   
 ## Contributions
@@ -150,7 +155,7 @@ Contributions are welcome:
    
   
 ## Version
-1.0.1
+1.0.2
 
 
 ## License
