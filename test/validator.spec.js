@@ -3,25 +3,79 @@
  */
 
 import { describe, test, expect } from "@jest/globals"
-import { Chart } from "../lib/public/chart.js"
+import { Rules } from "../lib/config/rules"
+import { Validator } from "../lib/helpers/validator"
 
 describe("validateData()", () => {
     test("doesn't throw if data is valid", () => {
-        const chart = new Chart()
+        const rules = new Rules()
+		const validator = new Validator(rules)
 
         const testData = [
             { name: "Oslo", value: 44 },
             { name: "Stockholm", value: 22 }
         ]
         expect(() => {
-            chart.validateData(testData)
+            validator.validateData(testData)
         }).not.toThrow()
+    })
+})
+
+describe("validateData()", () => {
+    test("throws RangeError if number of objects is outside allowed range", () => {
+        const rules = new Rules()
+		const validator = new Validator(rules)
+
+        const testData = [{ name: "Oslo", value: 44 }]
+        expect(() => {
+            validator.validateData(testData)
+        }).toThrow(RangeError)
+    })
+
+    test("throws RangeError if value is outside allowed range", () => {
+        const rules = new Rules()
+		const validator = new Validator(rules)
+
+        const testData = [
+            { name: "Oslo", value: -2 },
+            { name: "Stockholm", value: 44 }
+        ]
+        expect(() => {
+            validator.validateData(testData)
+        }).toThrow(RangeError)
+    })
+
+    test("throws TypeError if type is incorrect", () => {
+        const rules = new Rules()
+		const validator = new Validator(rules)
+
+        const testData = [
+            { name: 1000, value: 44 },
+            { name: "Stockholm", value: 22 }
+        ]
+        expect(() => {
+            validator.validateData(testData)
+        }).toThrow(TypeError)    
+    })
+
+    test("throws SyntaxError if key is invalid", () => {
+        const rules = new Rules()
+		const validator = new Validator(rules)
+
+        const testData = [
+            { pizza: "Oslo", value: 44 },
+            { name: "Stockholm", value: 22, }
+        ]
+        expect(() => {
+            validator.validateData(testData)
+        }).toThrow(SyntaxError)
     })
 })
 
 describe("validateOptions()", () => {
     test("doesn't throw if options are valid", () => {
-        const chart = new Chart()
+        const rules = new Rules()
+		const validator = new Validator(rules)
 
         const testOptions = {
             width: 550,
@@ -29,104 +83,61 @@ describe("validateOptions()", () => {
             title: "Test"
         }
         expect(() => {
-            chart.validateOptions(testOptions)
+            validator.validateOptions(testOptions)
         }).not.toThrow()
     })
 })
 
-describe("validateData()", () => {
-    test("throws RangeError if number of objects is outside allowed range", () => {
-        const chart = new Chart()
-
-        const testData = [{ name: "Oslo", value: 44 }]
-        expect(() => {
-            chart.validateData(testData)
-        }).toThrow(RangeError)
-    })
-
-    test("throws RangeError if value is outside allowed range", () => {
-        const chart = new Chart()
-
-        const testData = [
-            { name: "Oslo", value: -2 },
-            { name: "Stockholm", value: 44 }
-        ]
-        expect(() => {
-            chart.validateData(testData)
-        }).toThrow(RangeError)
-    })
-
-    test("throws TypeError if type is incorrect", () => {
-        const chart = new Chart()
-
-        const testData = [
-            { name: 100, value: 44 },
-            { name: "Stockholm", value: 22 }
-        ]
-        expect(() => {
-            chart.validateData(testData)
-        }).toThrow(TypeError)    
-    })
-
-    test("throws SyntaxError if key is invalid", () => {
-        const chart = new Chart()
-
-        const testData = [
-            { pizza: "Oslo", value: 44 },
-            { name: "Stockholm", value: 22, }
-        ]
-        expect(() => {
-            chart.validateData(testData)
-        }).toThrow(SyntaxError)
-    })
-})
-
-
 describe("validateOptions()", () => {
     test("throws RangeError if value is outside allowed range", () => {
-        const chart = new Chart()
+        const rules = new Rules()
+		const validator = new Validator(rules)
 
         const testOptions = { width: 10000001 }
         expect(() => {
-            chart.validateOptions(testOptions)
+            validator.validateOptions(testOptions)
         }).toThrow(RangeError)
     })
 
     test("throws TypeError if type is incorrect", () => {
-        const chart = new Chart()
+        const rules = new Rules()
+		const validator = new Validator(rules)
 
         const testOptions = { height: "400" }
         expect(() => {
-            chart.validateOptions(testOptions)
+            validator.validateOptions(testOptions)
         }).toThrow(TypeError)
     })
 
     test("throws SyntaxError if key is invalid", () => {
-        const chart = new Chart()
+        const rules = new Rules()
+		const validator = new Validator(rules)
 
-        const testOptions = { pizza: "yes" }
+        const testOptions = { pizza: "red" }
         expect(() => {
-            chart.validateOptions(testOptions)
+            validator.validateOptions(testOptions)
         }).toThrow(SyntaxError)
     })
 })
 
 describe("validateOptions()", () => {
     test("throws TypeError if color is invalid", () => {
-        const chart = new Chart()
+        const rules = new Rules()
+		const validator = new Validator(rules)
 
         const testOptions = { color: "pizza" }
         expect(() => {
-            chart.validateOptions(testOptions)
+            validator.validateOptions(testOptions)
         }).toThrow(TypeError)
     })
 
     test("throws TypeError if font is invalid", () => {
-        const chart = new Chart()
+        const rules = new Rules()
+		const validator = new Validator(rules)
 
         const testOptions = { font: "pizza" }
         expect(() => {
-            chart.validateOptions(testOptions)
+            validator.validateOptions(testOptions)
         }).toThrow(TypeError)
     })
 })

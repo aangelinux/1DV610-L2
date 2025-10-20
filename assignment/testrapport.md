@@ -18,9 +18,10 @@
   
   
 # Unit tests
-[Unit tests](/test/unit.spec.js)  
+[Tests: Validator](/test/validator.spec.js)
+[Tests: Configuration](/test/config.spec.js)
   
-![badge](https://img.shields.io/badge/unit_tests-12_pass_0_fail-green)  
+![badge](https://img.shields.io/badge/unit_tests-14_pass_0_fail-green)  
   
 # Summary
-The library's public methods are tested using manual tests to ensure the diagrams are correctly rendered. Unit tests ensure validation methods work correctly, and run automatically via GitHub Actions when pushing to the repo.
+The library's public methods are tested using manual tests to ensure the diagrams are correctly rendered. Unit tests ensure validation and style options configuration work correctly. They run automatically with GitHub Actions when pushing to the repo.
