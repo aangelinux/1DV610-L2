@@ -1,208 +1,146 @@
 /**
- * @module Defines unit tests for the library.
+ * @module Tests that data and style options are validated correctly.
  */
 
 import { describe, test, expect } from "@jest/globals"
 import { Chart } from "../lib/public/chart.js"
 
-describe("validateData() - object", () => {
-    test("#1 throws RangeError if number of number of objects is outside range", () => {
-        const testData = [
-            {
-                name: "Oslo",
-                value: 44
-            }
-        ]
-
+describe("validateData()", () => {
+    test("doesn't throw if data is valid", () => {
         const chart = new Chart()
+
+        const testData = [
+            { name: "Oslo", value: 44 },
+            { name: "Stockholm", value: 22 }
+        ]
         expect(() => {
             chart.validateData(testData)
-        }).toThrow(RangeError)
+        }).not.toThrow()
     })
 })
 
-describe("validateOptions() - object", () => {
-    test("#2 throws RangeError if number of number of keys is outside range", () => {
+describe("validateOptions()", () => {
+    test("doesn't throw if options are valid", () => {
+        const chart = new Chart()
+
         const testOptions = {
             width: 550,
             height: 300,
-            radius: 300,
-            title: "Test",
-            color: "red",
-            font: "arial",
+            title: "Test"
         }
-
-        const chart = new Chart()
         expect(() => {
-            chart.validateData(testOptions)
-        }).toThrow(RangeError)
+            chart.validateOptions(testOptions)
+        }).not.toThrow()
     })
 })
 
-
-describe("validateData() - values", () => {
-    test("#3.1 throws RangeError if value is outside range", () => {
-        const testData = [
-            {
-                name: "Oslo",
-                value: 44
-            },
-            {
-                name: "Stockholm",
-                value: 10000001
-            }
-        ]
-
+describe("validateData()", () => {
+    test("throws RangeError if number of objects is outside allowed range", () => {
         const chart = new Chart()
+
+        const testData = [{ name: "Oslo", value: 44 }]
         expect(() => {
             chart.validateData(testData)
         }).toThrow(RangeError)
     })
 
-    test("#3.2 throws TypeError if type is wrong", () => {
-        const testData = [
-            {
-                name: "Oslo",
-                value: "44"
-            },
-            {
-                name: "Stockholm",
-                value: 22
-            }
-        ]
-        
+    test("throws RangeError if value is outside range", () => {
         const chart = new Chart()
+
+        const testData = [
+            { name: "Oslo", value: -2 },
+            { name: "Stockholm", value: 44 }
+        ]
+        expect(() => {
+            chart.validateData(testData)
+        }).toThrow(RangeError)
+    })
+
+    test("throws TypeError if type is incorrect", () => {
+        const chart = new Chart()
+
+        const testData = [
+            { name: 100, value: 44 },
+            { name: "Stockholm", value: 22 }
+        ]
         expect(() => {
             chart.validateData(testData)
         }).toThrow(TypeError)    
     })
 
-    test("#3.3 throws SyntaxError if key doesn't exist", () => {
-        const testData = [
-            {
-                name: "Oslo",
-                value: 44
-            },
-            {
-                name: "Stockholm",
-                pizza: 22,
-            }
-        ]
-        
+    test("throws SyntaxError if key is invalid", () => {
         const chart = new Chart()
-        expect(() => {
-            chart.validateData(testData)
-        }).toThrow(SyntaxError)    
-    })
 
-    test("#3.4 returns nothing if data object is correct", () => {
         const testData = [
-            {
-                name: "Oslo",
-                value: 44
-            },
-            {
-                name: "Stockholm",
-                value: 22,
-            }
+            { pizza: "Oslo", value: 44 },
+            { name: "Stockholm", value: 22, }
         ]
-        
-        const chart = new Chart()
         expect(() => {
             chart.validateData(testData)
-        }).toBeTruthy()
+        }).toThrow(SyntaxError)
     })
 })
 
 
-describe("validateOptions() - values", () => {
-    test("#4.1 throws RangeError if value is outside range", () => {
+describe("validateOptions()", () => {
+    test("throws RangeError if number of keys is outside allowed range", () => {
+        const chart = new Chart()
+
         const testOptions = {
-            width: 1001,
+            width: 550,
             height: 300,
             title: "Test",
             color: "red",
-            font: "arial"
+            font: "arial",
+			pizza: "yes"
         }
-
-        const chart = new Chart()
         expect(() => {
             chart.validateOptions(testOptions)
         }).toThrow(RangeError)
     })
 
-    test("#4.2 throws TypeError if type is wrong", () => {
-        const testOptions = {
-            width: "500",
-            height: 300,
-            title: "Test",
-            color: "red",
-            font: "arial"
-        }
-
+    test("throws RangeError if value is outside range", () => {
         const chart = new Chart()
+
+        const testOptions = { width: 10000001 }
+        expect(() => {
+            chart.validateOptions(testOptions)
+        }).toThrow(RangeError)
+    })
+
+    test("throws TypeError if type is incorrect", () => {
+        const chart = new Chart()
+
+        const testOptions = { height: "400" }
         expect(() => {
             chart.validateOptions(testOptions)
         }).toThrow(TypeError)
     })
 
-    test("#4.3 throws RangeError if value is outside range", () => {
-        const testOptions = {
-            width: 550,
-            height: 300,
-            title: "Test",
-            color: "red",
-            pizza: "arial"
-        }
-
+    test("throws SyntaxError if key is invalid", () => {
         const chart = new Chart()
+
+        const testOptions = { pizza: "yes" }
         expect(() => {
             chart.validateOptions(testOptions)
         }).toThrow(SyntaxError)
     })
-
-    test("#4.4 returns nothing if options object is correct", () => {
-        const testOptions = {
-            width: 550,
-            height: 300,
-            title: "Test",
-            color: "red",
-            font: "arial"
-        }
-
-        const chart = new Chart()
-        expect(() => {
-            chart.validateOptions(testOptions)
-        }).toBeTruthy()
-    })
 })
 
-describe("validateOptions() - color & font", () => {
-    test("#5.1 throws TypeError if color is invalid", () => {
-        const testOptions = {
-            width: 550,
-            height: 300,
-            title: "Test",
-            color: "pizza",
-            font: "arial"
-        }
-
+describe("validateOptions()", () => {
+    test("throws TypeError if color is invalid", () => {
         const chart = new Chart()
+
+        const testOptions = { color: "pizza" }
         expect(() => {
             chart.validateOptions(testOptions)
         }).toThrow(TypeError)
     })
 
-    test("#5.2 throws TypeError if font is invalid", () => {
-        const testOptions = {
-            width: 550,
-            height: 300,
-            title: "Test",
-            color: "red",
-            font: "pizza"
-        }
-
+    test("throws TypeError if font is invalid", () => {
         const chart = new Chart()
+
+        const testOptions = { font: "pizza" }
         expect(() => {
             chart.validateOptions(testOptions)
         }).toThrow(TypeError)
