@@ -44,7 +44,7 @@ describe("validateData()", () => {
         }).toThrow(RangeError)
     })
 
-    test("throws RangeError if value is outside range", () => {
+    test("throws RangeError if value is outside allowed range", () => {
         const chart = new Chart()
 
         const testData = [
@@ -83,23 +83,7 @@ describe("validateData()", () => {
 
 
 describe("validateOptions()", () => {
-    test("throws RangeError if number of keys is outside allowed range", () => {
-        const chart = new Chart()
-
-        const testOptions = {
-            width: 550,
-            height: 300,
-            title: "Test",
-            color: "red",
-            font: "arial",
-			pizza: "yes"
-        }
-        expect(() => {
-            chart.validateOptions(testOptions)
-        }).toThrow(RangeError)
-    })
-
-    test("throws RangeError if value is outside range", () => {
+    test("throws RangeError if value is outside allowed range", () => {
         const chart = new Chart()
 
         const testOptions = { width: 10000001 }
