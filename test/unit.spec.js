@@ -1,6 +1,5 @@
 /**
  * @module Defines unit tests for the library.
- * @file test/unit.spec.js
  */
 
 import { describe, test, expect } from "@jest/globals"
