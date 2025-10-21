@@ -18,7 +18,10 @@
   
   
 # Unit tests
-[Unit tests](/test/unit.spec.js) 12/12 pass
+[Tests: Validator](/test/validator.spec.js)
+[Tests: Configuration](/test/config.spec.js)
+  
+![badge](https://img.shields.io/badge/unit_tests-14_pass_0_fail-green)  
   
 # Summary
-The library has been tested using manual tests as well as unit tests created with Jest. Most public methods were tested with manual tests to ensure the diagrams are correctly rendered. The methods for validating the data and options objects were tested with unit tests to account for all possible outcomes.
+Manual tests ensure all diagrams are rendered with the correct data and style options. Unit tests ensure validation works and options are configured properly. All unit tests run automatically with GitHub Actions when pushing to the repo.
