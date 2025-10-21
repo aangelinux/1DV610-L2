@@ -24,4 +24,4 @@
 ![badge](https://img.shields.io/badge/unit_tests-14_pass_0_fail-green)  
   
 # Summary
-The library's public methods are tested using manual tests to ensure the diagrams are correctly rendered. Unit tests ensure validation and style options configuration work correctly. They run automatically with GitHub Actions when pushing to the repo.
+Manual tests ensure all diagrams are rendered with the correct data and style options. Unit tests ensure validation works and options are configured properly. All unit tests run automatically with GitHub Actions when pushing to the repo.

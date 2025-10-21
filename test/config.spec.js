@@ -4,14 +4,14 @@
 
 import { describe, test, expect } from "@jest/globals"
 import { Defaults } from "../lib/config/defaults"
-import { Configuration } from "../lib/helpers/configuration"
+import { Config } from "../lib/helpers/config.js"
 
 describe("assemble()", () => {
 	test("uses user-defined style options (linear) if present", () => {
 		const defaults = new Defaults()
-		const configuration = new Configuration(defaults)
+		const config = new Config(defaults)
 		const userOptions = { width: 400, font: "arial" }
-		const options = configuration.assemble(userOptions, "LINEAR")
+		const options = config.assemble(userOptions, "LINEAR")
 
 		expect(options).toStrictEqual({
 			width: 400,
@@ -26,9 +26,9 @@ describe("assemble()", () => {
 describe("assemble()", () => {
 	test("uses user-defined style options (radial) if present", () => {
 		const defaults = new Defaults()
-		const configuration = new Configuration(defaults)
+		const config = new Config(defaults)
 		const userOptions = { radius: 300, font: "tahoma" }
-		const options = configuration.assemble(userOptions, "RADIAL")
+		const options = config.assemble(userOptions, "RADIAL")
 
 		expect(options).toStrictEqual({
 			radius: 300,
@@ -41,9 +41,9 @@ describe("assemble()", () => {
 describe("assemble()", () => {
 	test("excludes invalid options", () => {
 		const defaults = new Defaults()
-		const configuration = new Configuration(defaults)
+		const config = new Config(defaults)
 		const userOptions = { pizza: "green", font: "arial" }
-		const options = configuration.assemble(userOptions, "LINEAR")
+		const options = config.assemble(userOptions, "LINEAR")
 
 		expect(options).toStrictEqual({
 			width: 550,
