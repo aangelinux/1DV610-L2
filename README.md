@@ -71,9 +71,6 @@ chart.replaceStaticCSS(template)
 You will need to rewrite all static CSS rules if you want to use your own template, or use from the default template: [template](https://github.com/aangelinux/1DV610-L2/blob/main/lib/styles/cssTemplate.js)
   
 ---
-Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema, the chart will use the default options as defined in the table below.  
-The options object has two different schemas depending on the type of chart being created. See **Options Schemas** and **Data Schema** below.  
-  
 Data and options are automatically validated before rendering the chart, and an exception is thrown if they fail any validation checks. If you want to validate either object before creating a chart, you can call these methods:
 - validateData(data)
 - validateOptions(options)
@@ -84,9 +81,9 @@ chart.validateData(newData)
 chart.validateOptions(newOptions)
 ```
   
-Finally, you can call any of these helper methods:  
-- get chart()
-- resetChart()
+---
+Passing an options object is optional. It is also not required to pass an options object containing all the keys defined in the schema, the chart will use default options otherwise.  
+The options object has two different schemas depending on the type of chart being created. See **Options Schemas** in the section below.  
   
 ### Default options
 | Key    | Values            |
@@ -97,7 +94,11 @@ Finally, you can call any of these helper methods:
 | title  | Data Chart        |
 | color  | darkred           |
 | font   | Monaco, monospace |
-   
+  
+---
+Finally, you can call any of these helper methods:  
+- get chart()
+- resetChart()
   
     
 ## Valid Objects
@@ -133,9 +134,10 @@ Finally, you can call any of these helper methods:
 | title  | string |                                                  |
 | font   | string | (Monaco, monospace), Arial, Verdana, Tahoma, Times New Roman, Georgia, Lexend Light |
   
+---
 ### Errors
 If any exceptions are thrown, the chart will not be rendered.  
-Object values that are outside the defined ranges will throw a RangeError.  
+Object values that are outside allowed ranges will throw a RangeError.  
 Object keys that are not of the correct types will throw a TypeError.  
 Object keys that are invalid will throw a SyntaxError.  
   
@@ -152,7 +154,7 @@ Contributions are welcome:
 - Make your changes, write clear commit messages.
 - Open a pull request and describe your changes.
 - For bugfixes/requests, open an issue.
-- Run unit tests with ```npm test```.
+- Testing manually or with unit tests is welcome.
    
   
 ## Version
