@@ -1,6 +1,6 @@
 ### Bugs
 - ~~resetChart() doesn't remove all child elements~~
-- Some pie slice ratios don't complete the 360-degree circle
+- If a pie slice is too small it doesn't get filled in
   
 ### Issues  
 - ~~Remove gap between x-axis and end of y-axis~~
